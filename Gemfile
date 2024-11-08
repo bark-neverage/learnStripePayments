@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
-
+# Heroku should use this version of ruby
 ruby "2.7.6"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
@@ -10,8 +10,14 @@ gem "rails", "~> 7.0.8", ">= 7.0.8.4"
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
+# sqlite3 for development and test database
+gem "sqlite3", "~> 1.4", group: [:development, :test]
 
+#postgres for production database
+gem 'pg', group: :production
+
+#12 factor for heroku
+gem 'rails_12factor', group: :production
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
